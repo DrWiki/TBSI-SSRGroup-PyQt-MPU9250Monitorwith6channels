@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Ui_GroupBox{
+interface setupUi
+}
+class Ui_MainWindow{
+interface setupUi
+}
+abstract class Qt.Qobject
+abstract class Qt.QGroupBox
+abstract class Qt.QWidgets
+abstract class Qt.QMainWindow
+
+
+abstract class ToolsUi{
+    signal_write_msg(str)
+    signal_NewClientAdded(tuple)
+    signal_NewDataComing(str)
+    connect()
+    NewClient()
+    write_msg()
+}
+
+class ControlBox
+class Metadata
+class PyQt_Serial
+class TcpLogic
+class UdpLogic
+
+class Ui_MainWindow
+class WinLayout
+class WinLogic
+
+Ui_GroupBox----|>ControlBox:setupUi(Qt.QGroupBox)
+Qt.QGroupBox--|>ControlBox
+Metadata-->ControlBox:put
+ControlBox---->WinLayout:put
+Qt.Qobject-|>Qt.QWidgets
+Qt.QWidgets--|>Qt.QMainWindow
+Qt.QWidgets--|>Qt.QGroupBox
+ToolsUi--|>PyQt_Serial
+ToolsUi--|>TcpLogic
+ToolsUi--|>UdpLogic
+Ui_MainWindow---|>WinLayout:setupUi(QMainWindow)
+PyQt_Serial---|>ControlBox
+TcpLogic---|>ControlBox
+UdpLogic---|>ControlBox
+Qt.QMainWindow--|>WinLayout
+WinLayout--|>WinLogic
+
+@enduml
